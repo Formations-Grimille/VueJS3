@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TP 0 - Pas encore de Vue.js ? :(</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <div id="app">
+    <div class="container">
+      <div id="counter-value">{{ counter }}</div>
+      <button @click="decrement">-</button>
+      <button @click="increment">+</button>
+    </div>
+  </div>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const { createApp, ref } = Vue
+  
+    createApp({
+      setup() {
+        const counter = ref(0)
+        const increment = () => {
+          counter.value++;
+        }
+
+        const decrement = () => {
+          counter.value--;
+        }
+        return {
+          counter,
+          increment,
+          decrement
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+</html>
