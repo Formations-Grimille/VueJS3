@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TP 1 : Découverte de Vue.js 3</title>
+</head>
+<body>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <div id="app">
+    <p v-bind:title="title">Pour connaître la date du jour, survolez-moi 🚁</p>
+  </div>
+
+  <script>
+    Vue.createApp({
+      setup() {
+        const title = Vue.ref(`Aujourd'hui, nous somme le ${new Date().toLocaleDateString()}`);
+        return {
+          title
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+</html>
