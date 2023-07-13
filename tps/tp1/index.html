@@ -6,15 +6,15 @@
   <title>TP 1 : Découverte de Vue.js 3</title>
 </head>
 <body>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <div id="app">
     <h1>Bonjour, je m'appelle {{ firstname }}</h1>
   </div>
 
-  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script>
     Vue.createApp({
       setup() {
-        const firstname = 'Mickaël'
+        const firstname = Vue.ref('Mickaël')
         return {
           firstname
         }
