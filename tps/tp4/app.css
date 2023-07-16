@@ -1,0 +1,54 @@
+@import url(https://fonts.bunny.net/css?family=abeezee:400);
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'ABeeZee', sans-serif;
+  font-size: 16px;
+}
+
+#app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+}
+
+h1 {
+  margin-bottom: 1em;
+}
+
+.fruits {
+  list-style: none;
+  max-width: 600px;
+  width: 100%;
+  background: #2C3A47;
+  padding: 1em 1em 3em 1em;
+  color: #F0F0F0;
+}
+
+.fruits li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5em 0;
+}
+
+.stock {
+  border-radius: 2em;
+  padding: 0.25em 0.5em;
+}
+
+.in-stock {
+  background-color: #58B19F;
+}
+
+.out-of-stock {
+  background-color: #B33771;
+}
+

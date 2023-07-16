@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="app.css">
+  <title>TP 4 : Le primeur</title>
+</head>
+<body>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <div id="app">
+    <h1>Le primeur</h1>
+    <ul class="fruits">
+      <li v-for="fruit in fruits" :key="fruit.id">
+        <span>{{ fruit.name }} au prix de {{ fruit.price }}€</span>
+        <span v-if="fruit.inStock" class="stock in-stock" >En stock</span>
+        <span v-else class="stock out-of-stock">Rupture</span>
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    Vue.createApp({
+      setup() {
+        const fruits = Vue.ref([{
+          id: "F-150",
+          name: "Banane",
+          price: 0.7,
+          inStock: true
+        },
+        {
+          id: "F-160",
+          name: "Kiwi",
+          price: 2.5,
+          inStock: true
+        },
+        {
+          id: "F-200",
+          name: "Fraise",
+          price: 3,
+          inStock: false
+        },
+        {
+          id: "F-020",
+          name: "Citron",
+          price: 0.5,
+          inStock: true
+        },
+        {
+          id: "F-290",
+          name: "Framboise",
+          price: 1.6,
+          inStock: false
+        }]);
+
+        return {
+          fruits
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+</html>
