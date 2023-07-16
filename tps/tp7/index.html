@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="app.css">
+  <title>TP 7: Cours d'informatique</title>
+</head>
+<body>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <div id="app">
+    <div class="modal-box-wrapper" :class="{opened: modalMessage !== ''}">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h2>Êtes-vous sûr d'acheter ce cours ?</h2>
+          <button type="button" v-on:click="closeConfirmation">x</button>
+        </div>
+        <div class="modal-content">
+          {{ modalMessage }}
+        </div>
+        <div class="modal-footer">
+          <button v-on:click="closeConfirmation" type="button">Annuler</button>
+          <button v-on:click="closeConfirmation" type="button">Acheter</button>
+        </div>
+      </div>
+    </div>
+    <h1>Choisissez un cours de programmation</h1>
+    <ul class="courses">
+      <li v-for="course in courses" v-bind:key="course.id">
+        <span>{{ course.name }} au prix de {{ course.price }}€</span>
+          <span class="buy" @click="openConfirmation(course)">Acheter</span>
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    Vue.createApp({
+      setup() {
+        const modalMessage = Vue.ref('');
+        const courses = Vue.ref([{
+          id: "C-100",
+          name: "C++",
+          price: 250,
+        },
+        {
+          id: "C-200",
+          name: "Javascript",
+          price: 300,
+        },
+        {
+          id: "C-300",
+          name: "PHP",
+          price: 150,
+        },
+        {
+          id: "C-400",
+          name: "Rust",
+          price: 500,
+        },
+        {
+          id: "C-500",
+          name: "Perl",
+          price: 1000,
+        }]);
+
+        const openConfirmation = (course) => {
+          modalMessage.value = `Voulez-vous vraiment acheter ce cours de ${course.name} à ${course.price}€ ?`
+        }
+
+        const closeConfirmation = () => {
+          modalMessage.value = '';
+        }
+
+        return {
+          courses,
+          modalMessage,
+          openConfirmation,
+          closeConfirmation
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+</html>
