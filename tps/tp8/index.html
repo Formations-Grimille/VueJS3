@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="app.css">
+  <title>TP 8 : Le mode streamer</title>
+</head>
+<body>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <div id="app">
+    <header class="site-header">
+      <h1>Listing des utilisateurs du site</h1>
+      <div class="streamer-mode">
+        <span>Activer le mode streamer</span>
+        <input type="checkbox" v-model="streamerMode">
+      </div>
+    </header>
+    <div class="cards-container">
+      <div v-for="(user, index) in users" class="card" v-bind:key="user.uuid">
+        <div class="card-header">
+          <div class="avatar-container">
+            <img v-if="user.premium" src="img/icons/star.png" alt="star icon premium" class="premium-icon"/>
+            <img class="avatar" v-bind:src="user.avatar" v-bind:alt="user.uuid + ' avatar'">
+          </div>
+          <div v-if="!streamerMode" class="user-identity">
+            <h3>{{ user.firstname }} {{ user.lastname }}</h3>
+            <p>{{ user.age }} ans.</p>
+          </div>
+          <div v-else>
+            <h3>{{ firstLetter(user.firstname) }}... {{ firstLetter(user.lastname) }}...</h3>
+          </div>
+        </div>
+        <div class="card-content">
+          <h5 v-if="user.socials">Réseaux sociaux</h5>
+          <h5 v-else>Pas de réseaux sociaux associés.</h5>
+          <ul>
+            <li class="social" v-for="social in user.socials" v-bind:key="social.type">
+              <img v-bind:src="'img/socials/' + social.type + '_icon.png'"/><a v-bind:href="social.url">{{ social.name }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    Vue.createApp({
+      setup() {
+        const streamerMode = Vue.ref(false);
+        const users = Vue.ref([{
+          uuid: "d4b3471b-e360-444d-b449-1d5babe1927a",
+          firstname: "Jean",
+          lastname: "Dupont",
+          age: 36,
+          premium: false,
+          avatar: "https://i.pravatar.cc/300/?img=11",
+          socials: [
+            {
+              name: "TikTok",
+              type: "tiktok",
+              url: "https://tiktok.com/"
+            },
+            {
+              name: "YouTube",
+              type: "youtube",
+              url: "https://youtube.com/"
+            },
+            {
+              name: "Discord",
+              type: "discord",
+              url: "https://discord.gg/"
+            }
+          ]
+        },
+        {
+          uuid: "973bbaf5-c6e8-43d9-8d93-9c67b4b51bf3",
+          firstname: "Benoit",
+          lastname: "Legrand",
+          age: 53,
+          premium: true,
+          avatar: "https://i.pravatar.cc/300/?img=6",
+          socials: [
+            {
+              name: "TikTok",
+              type: "tiktok",
+              url: "https://tiktok.com/"
+            },
+            {
+              name: "YouTube",
+              type: "youtube",
+              url: "https://youtube.com/"
+            },
+            {
+              name: "Twitter",
+              type: "twitter",
+              url: "https://twitter.com/"
+            }
+          ]
+        },
+        {
+          uuid: "cce1cf4f-2f8c-49ff-b750-e7bf378189a5",
+          firstname: "Micheline",
+          lastname: "Vachette",
+          age: 71,
+          premium: true,
+          avatar: "https://i.pravatar.cc/300/?img=47",
+          socials: [
+            {
+              name: "TikTok",
+              type: "tiktok",
+              url: "https://tiktok.com/"
+            }
+          ]
+        },
+        {
+          uuid: "83b016b8-a155-4afd-bddc-01356bedb1b1",
+          firstname: "Elisa",
+          lastname: "Vachette",
+          age: 19,
+          premium: false,
+          avatar: "https://i.pravatar.cc/300/?img=5"
+        },
+       ]);
+
+       const firstLetter = (word) => {
+        return word.charAt(0);
+       }
+
+        return {
+          users,
+          streamerMode,
+          firstLetter
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+</html>
