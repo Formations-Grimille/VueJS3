@@ -17,10 +17,6 @@ body {
   padding: 2rem 3rem;
 }
 
-h1 {
-  margin-bottom: 1em;
-}
-
 h5 {
   margin-top: 1em;
 }
@@ -29,10 +25,11 @@ header.site-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 1em;
 }
 
 .streamer-mode {
-  display: flex;mlp
+  display: flex;
   align-items: center;
 }
 
