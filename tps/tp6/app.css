@@ -1,0 +1,64 @@
+@import url(https://fonts.bunny.net/css?family=abeezee:400);
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: 'ABeeZee', sans-serif;
+  font-size: 16px;
+}
+
+#app {
+
+}
+
+.modal-box-wrapper {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal-box-wrapper.opened {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity .3s ease-in-out;
+}
+
+.modal-box {
+  background: white;
+  max-width: 600px;
+  padding: 2em;
+  border-radius: 4px;
+  opacity: 0;
+  transform: translate3d(0, 90px, 0);
+}
+
+.modal-box-wrapper.opened .modal-box {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  transition: all .3s ease-in-out;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2em;
+}
+
+.modal-footer {
+  display: flex;
+  margin-top: 2em;
+  justify-content: flex-end;
+}
+
+button {
+  padding: 0.5em 1em;
+  cursor: pointer;
+}

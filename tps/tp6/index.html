@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="app.css">
+  <title>TP 5 : Les profils</title>
+</head>
+<body>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <div id="app">
+    <button type="button" v-if="!isModalOpened" v-on:click="toggleModal">Ouvrir la boîte modale</button>
+    <div class="modal-box-wrapper" :class="{opened: isModalOpened}">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h2>Bienvenue</h2>
+          <button type="button" v-on:click="toggleModal">x</button>
+        </div>
+        <div class="modal-content">
+          Bienvenue Jean sur le nouveau site de la Vue.js corp' !
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi dolores repellendus quos!
+        </div>
+        <div class="modal-footer">
+          <button v-on:click="toggleModal" type="button">Merci !</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    Vue.createApp({
+      setup() {
+        const isModalOpened = Vue.ref(false);
+        const toggleModal = () => {
+          isModalOpened.value = !isModalOpened.value;
+        }
+
+        return {
+          isModalOpened,
+          toggleModal
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+</html>
