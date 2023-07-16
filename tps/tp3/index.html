@@ -10,9 +10,7 @@
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <div id="app">
     <header>
-      <div id="logo">
-
-      </div>
+      <p id="logo">LOGO</p>
       <nav>
         <ul>
           <li>Accueil</li>
@@ -31,7 +29,7 @@
   <script>
     Vue.createApp({
       setup() {
-        const isAuthenticated = Vue.ref(true);
+        const isAuthenticated = Vue.ref(false);
         return {
           isAuthenticated
         }
