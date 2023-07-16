@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="app.css">
+  <title>TP 1 : Découverte de Vue.js 3</title>
+</head>
+<body>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <div id="app">
+    <header>
+      <div id="logo">
+
+      </div>
+      <nav>
+        <ul>
+          <li>Accueil</li>
+          <li>Boutique</li>
+          <li>Contact</li>
+          <li v-if="isAuthenticated">
+            <img class="avatar" src="https://xsgames.co/randomusers/avatar.php?g=male">
+            <span>Mickaël</span>
+          </li>
+          <li v-else>Connexion</li>
+        </ul>
+      </nav>
+    </header>
+  </div>
+
+  <script>
+    Vue.createApp({
+      setup() {
+        const isAuthenticated = Vue.ref(true);
+        return {
+          isAuthenticated
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+@import url(https://fonts.bunny.net/css?family=abeezee:400);
+
+body {
+  font-family: 'ABeeZee', sans-serif;
+}
+
+header {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items:center;
+  justify-content: space-between;
+}
+
+nav ul {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  list-style-type: none;
+}
+
+nav ul li {
+  display: flex;
+  align-items: center;
+  margin: 0 1em;
+}
+
+.avatar {
+  border-radius: 50%;
+  width: 1.5em;
+  height: 1.5em;
+  margin-right: 0.5em;
+}
