@@ -43,3 +43,9 @@ nav ul li {
   height: 1.5em;
   margin-right: 0.5em;
 }
+
+.alert {
+  padding: 1em;
+  background: #F0F0F0;
+  font-size: 0.815rem;
+}
