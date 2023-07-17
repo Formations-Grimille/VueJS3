@@ -14,10 +14,6 @@ body {
   font-family: 'Menlo';
 }
 
-#counter-value {
-  text-align: center;
-}
-
 button {
   display: inline-flex;
   align-items: center;
@@ -37,4 +33,5 @@ button {
 #counter-value {
   font-size: 3rem;
   color: white;
+  text-align: center;
 } 
