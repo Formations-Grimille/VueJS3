@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="app.css">
+  <title>TP 9 : Vrello</title>
+</head>
+<body>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <div id="app">
+    <div class="container">
+      <div class="card">
+        <div class="card-header">
+          <h1>Vrello - Gestion des tâches</h1>
+          <span class="quote">Gérez vos tâches avec Vue.js</span>
+        </div>
+        <div class="card-content">
+          <div class="task-input">
+            <input v-model="input" type="text" name="add-task" @keyup.enter="addTask" :class="{ error: showDuplicateError }">
+            <button type="button" @click="addTask">Ajouter <i class="gg-math-plus plus-icon"></i></button>
+          </div>
+          <div class="tasks-manager">
+            <div class="task-list-container task-todo-list">
+              <h3>À faire ({{ getTodoTasks.length }})</h3>
+              <div v-if="getTodoTasks.length > 0" class="tasks-list">
+                <div class="task" v-for="(task, index) in getTodoTasks" :key="task.title">
+                  <p class="task-title">{{ task.title }}</p>
+                  <div class="task-actions">
+                    <input type="checkbox" v-model="task.done">
+                  </div>
+                </div>
+              </div>
+              <div class="task-list-empty-state" v-else>
+                <p>Aucune tâche pour le moment. Ajoutez une tâche en cliquant sur "Ajouter"</p>
+              </div>
+
+            </div>
+            <div class="task-list-container task-done-list">
+              <h3>Terminées ({{ getDoneTasks.length }})</h3>
+              <div v-if="getDoneTasks.length > 0" class="tasks-list">
+                <div class="task task-done" v-for="(task, index) in getDoneTasks" :key="task.title">
+                  <p class="task-title">{{ task.title }}</p>
+                  <div class="task-actions">
+                    <input type="checkbox" v-model="task.done">
+                    <svg
+                      @click="removeTask(task)"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="cursor: pointer;"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M17 6V5C17 3.89543 16.1046 3 15 3H9C7.89543 3 7 3.89543 7 5V6H4C3.44772 6 3 6.44772 3 7C3 7.55228 3.44772 8 4 8H5V19C5 20.6569 6.34315 22 8 22H16C17.6569 22 19 20.6569 19 19V8H20C20.5523 8 21 7.55228 21 7C21 6.44772 20.5523 6 20 6H17ZM15 5H9V6H15V5ZM17 8H7V19C7 19.5523 7.44772 20 8 20H16C16.5523 20 17 19.5523 17 19V8Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div class="task-list-empty-state" v-else>
+                <p>Pas encore de tâches terminées.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    Vue.createApp({
+      setup() {
+        const input = Vue.ref('');
+        const tasks = Vue.ref([]);
+        const showDuplicateError = Vue.ref(false);
+
+        const addTask = () => {
+          if (input.value !== null && input.value !== '') {
+            if (!hasTask(input.value)) {
+              tasks.value.push({
+                title: input.value,
+                done: false
+              });
+  
+              input.value = '';
+              showDuplicateError.value = false;
+            } else {
+              showDuplicateError.value = true;
+            }
+          }
+        }
+
+        const removeTask = (task) => {
+          if(hasTask(task.title)) {
+            const index = tasks.value.map(el => el.title).indexOf(task.title);
+            tasks.value.splice(index, 1);
+          }
+        }
+
+        const hasTask = (title) => {
+          return tasks.value.filter(el => el.title === title).length > 0;
+      }
+
+        const getDoneTasks = Vue.computed(() => {
+          return tasks.value.filter(t => t.done === true);
+        });
+
+        const getTodoTasks = Vue.computed(() => {
+          return tasks.value.filter(t => t.done === false);
+        });
+
+        return {
+          input,
+          showDuplicateError,
+          getDoneTasks,
+          getTodoTasks,
+          addTask,
+          removeTask
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+</html>
