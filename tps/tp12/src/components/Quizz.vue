@@ -2,7 +2,7 @@
   <div class="quizz">
     <h3 class="question">{{ question }}</h3>
       <ul class="answers">
-        <li v-for="answer in answers" :key="answer.code">{{ answer.text }}</li>
+        <li v-for="answer in answers" :key="answer.code" @click="selectAnswer(answer.code)">{{ answer.text }}</li>
       </ul>
   </div>
 </template>
@@ -19,6 +19,12 @@ const props = defineProps({
     required: true
   }
 });
+
+const emit = defineEmits(['answer']);
+
+const selectAnswer = (code) => {
+  emit('answer', code);
+}
 </script>
 
 <style scoped>
