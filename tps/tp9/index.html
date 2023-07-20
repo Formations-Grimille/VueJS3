@@ -24,7 +24,7 @@
             <div class="task-list-container task-todo-list">
               <h3>À faire ({{ getTodoTasks.length }})</h3>
               <div v-if="getTodoTasks.length > 0" class="tasks-list">
-                <div class="task" v-for="(task, index) in getTodoTasks" :key="task.title">
+                <div class="task" v-for="task in getTodoTasks" :key="task.title">
                   <p class="task-title">{{ task.title }}</p>
                   <div class="task-actions">
                     <input type="checkbox" v-model="task.done">
@@ -97,7 +97,7 @@
 
         const removeTask = (task) => {
           if(hasTask(task.title)) {
-            const index = tasks.value.map(el => el.title).indexOf(task.title);
+            const index = tasks.value.indexOf(task.title);
             tasks.value.splice(index, 1);
           }
         }
@@ -119,6 +119,7 @@
           showDuplicateError,
           getDoneTasks,
           getTodoTasks,
+          tasks,
           addTask,
           removeTask
         }
