@@ -30,6 +30,8 @@ const answers = ref([{
 </script>
 
 <style>
+@import url(https://fonts.bunny.net/css?family=abeezee:400);
+
 * {
   padding: 0;
   margin: 0;
