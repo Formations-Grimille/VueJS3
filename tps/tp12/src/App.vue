@@ -1,6 +1,6 @@
 <template>
   <div class="quizz-container">
-    <Quizz :question="question" :answers="answers"/>
+    <Quizz :question="question" :answers="answers" @toto="onAnswer"/>
   </div>
 </template>
 
@@ -26,6 +26,10 @@ const answers = ref([{
     text:  'La réponse D'
   }
 ]);
+
+const onAnswer = (answer) => {
+  alert("Le mec a répondu :" + answer.text);
+}
 
 </script>
 
