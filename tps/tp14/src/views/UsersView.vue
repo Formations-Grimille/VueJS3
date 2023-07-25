@@ -20,7 +20,6 @@
 <script setup>
 import { faker } from '@faker-js/faker'; // npm install @faker-js/faker dans le terminal pour l'avoir :)
 import { ref, onBeforeMount } from 'vue';
-import { RouterLink } from 'vue-router';
 const users = ref([]);
 
 onBeforeMount(() => {
